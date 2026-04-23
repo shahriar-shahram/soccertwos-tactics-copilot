@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.services.match_loader import load_all_matches, load_match_by_id
+from app.services.run_loader import load_all_runs, load_run_by_id
 
 app = FastAPI(title="SoccerTwos Tactics Copilot API")
 
@@ -44,3 +45,16 @@ def get_match(match_id: str):
     if match is None:
         raise HTTPException(status_code=404, detail="Match not found")
     return match
+
+
+@app.get("/runs")
+def list_runs():
+    return load_all_runs()
+
+
+@app.get("/runs/{run_id}")
+def get_run(run_id: str):
+    run = load_run_by_id(run_id)
+    if run is None:
+        raise HTTPException(status_code=404, detail="Run not found")
+    return run

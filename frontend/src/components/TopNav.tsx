@@ -5,6 +5,7 @@ const links = [
   { to: "/replay", label: "Replay" },
   { to: "/copilot", label: "Copilot" },
   { to: "/compare", label: "Compare" },
+  { to: "/runs", label: "Runs" },
 ];
 
 export default function TopNav() {
