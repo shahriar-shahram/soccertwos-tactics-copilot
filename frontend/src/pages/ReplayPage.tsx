@@ -7,6 +7,7 @@ type MatchEvent = {
   step: number;
   type: string;
   team: string;
+  tag?: string;
   text: string;
 };
 
@@ -18,6 +19,13 @@ type MatchDetail = {
     orange: number;
   };
   summary: string;
+  duration_steps?: number;
+  policy_id?: string;
+  elo_estimate?: number;
+  teams?: {
+    blue: string;
+    orange: string;
+  };
   events: MatchEvent[];
 };
 
@@ -49,6 +57,25 @@ export default function ReplayPage() {
               Score: Blue {match.score.blue} - Orange {match.score.orange}
             </p>
 
+            <div className="mb-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+              <div className="rounded-2xl border border-white/10 bg-slate-900 p-4">
+                <div className="text-sm text-slate-400">Policy</div>
+                <div className="mt-1 font-medium text-slate-100">{match.policy_id ?? "N/A"}</div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900 p-4">
+                <div className="text-sm text-slate-400">Duration Steps</div>
+                <div className="mt-1 font-medium text-slate-100">{match.duration_steps ?? "N/A"}</div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900 p-4">
+                <div className="text-sm text-slate-400">Estimated ELO</div>
+                <div className="mt-1 font-medium text-slate-100">{match.elo_estimate ?? "N/A"}</div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-slate-900 p-4">
+                <div className="text-sm text-slate-400">Events</div>
+                <div className="mt-1 font-medium text-slate-100">{match.events.length}</div>
+              </div>
+            </div>
+
             <div className="mb-6 rounded-2xl border border-white/10 bg-slate-900 p-6">
               <h2 className="mb-3 text-2xl font-semibold">Summary</h2>
               <p className="text-slate-300">{match.summary}</p>
@@ -68,6 +95,7 @@ export default function ReplayPage() {
                   <div key={index} className="rounded-xl bg-slate-800 p-4">
                     <div className="text-sm text-slate-400">
                       Step {event.step} · {event.team.toUpperCase()} · {event.type}
+                      {event.tag ? ` · ${event.tag}` : ""}
                     </div>
                     <div className="mt-1 text-slate-200">{event.text}</div>
                   </div>

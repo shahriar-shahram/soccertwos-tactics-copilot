@@ -1,0 +1,62 @@
+[
+  {
+    "id": "playbook::basic_tactics",
+    "source_type": "playbook",
+    "source_name": "basic_tactics.md",
+    "content": "# Basic SoccerTwos Tactical Notes\n\n## Defensive rotation\nWhen one player pressures the ball, the second player should maintain recovery positioning rather than overcommit.\n\n## Counterattack pattern\nA transition chance is strongest when possession changes in midfield and the far-side player immediately supports forward.\n\n## Common failure pattern\nDouble-committing near the ball often leaves the goal exposed after a failed challenge.\n\n## Safer shape\nIf the ball is contested near the wall, one player should challenge while the second stays central enough to protect the goal.\n"
+  },
+  {
+    "id": "match_summary::match_001",
+    "source_type": "match_summary",
+    "source_name": "match_001.json",
+    "content": "Blue won after better late-game defensive recovery and cleaner counterattacks."
+  },
+  {
+    "id": "match_event::match_001::0",
+    "source_type": "match_event",
+    "source_name": "match_001.json",
+    "content": "Step 45 | Team orange | Type pressure | Tag press | Orange forced Blue deep with early high pressure."
+  },
+  {
+    "id": "match_event::match_001::1",
+    "source_type": "match_event",
+    "source_name": "match_001.json",
+    "content": "Step 120 | Team blue | Type goal | Tag counterattack | Blue scored after a transition from midfield."
+  },
+  {
+    "id": "match_event::match_001::2",
+    "source_type": "match_event",
+    "source_name": "match_001.json",
+    "content": "Step 180 | Team blue | Type recovery | Tag defensive_shape | Blue recovered into shape and blocked a central lane."
+  },
+  {
+    "id": "match_event::match_001::3",
+    "source_type": "match_event",
+    "source_name": "match_001.json",
+    "content": "Step 240 | Team orange | Type goal | Tag sustained_pressure | Orange equalized after sustained pressure."
+  },
+  {
+    "id": "match_event::match_001::4",
+    "source_type": "match_event",
+    "source_name": "match_001.json",
+    "content": "Step 320 | Team blue | Type chance | Tag transition | Blue created a high-value transition chance from a loose ball."
+  },
+  {
+    "id": "match_event::match_001::5",
+    "source_type": "match_event",
+    "source_name": "match_001.json",
+    "content": "Step 410 | Team orange | Type mistake | Tag double_commit | Orange double-committed and left the goal exposed."
+  },
+  {
+    "id": "match_event::match_001::6",
+    "source_type": "match_event",
+    "source_name": "match_001.json",
+    "content": "Step 430 | Team blue | Type goal | Tag punish_mistake | Blue capitalized immediately on the defensive gap."
+  },
+  {
+    "id": "match_event::match_001::7",
+    "source_type": "match_event",
+    "source_name": "match_001.json",
+    "content": "Step 470 | Team blue | Type recovery | Tag game_management | Blue slowed the game and protected the lead with safer shape."
+  }
+]

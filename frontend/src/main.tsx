@@ -7,6 +7,7 @@ import ReplayPage from "./pages/ReplayPage";
 import CopilotPage from "./pages/CopilotPage";
 import ComparePage from "./pages/ComparePage";
 import RunsPage from "./pages/RunsPage";
+import RunDetailPage from "./pages/RunDetailPage";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/copilot" element={<CopilotPage />} />
         <Route path="/compare" element={<ComparePage />} />
         <Route path="/runs" element={<RunsPage />} />
+        <Route path="/run" element={<RunDetailPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import TopNav from "../components/TopNav";
 import { getRuns } from "../lib/api";
 
@@ -38,7 +39,11 @@ export default function RunsPage() {
         ) : (
           <div className="space-y-4">
             {runs.map((run) => (
-              <div key={run.run_id} className="rounded-2xl border border-white/10 bg-slate-900 p-6">
+              <Link
+                key={run.run_id}
+                to={`/run?id=${run.run_id}`}
+                className="block rounded-2xl border border-white/10 bg-slate-900 p-6 transition hover:bg-slate-800"
+              >
                 <h2 className="mb-3 text-2xl font-semibold">{run.run_id}</h2>
                 <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
                   <div className="rounded-xl bg-slate-800 p-3">Top ONNX: {run.has_top_level_onnx ? "Yes" : "No"}</div>
@@ -50,7 +55,7 @@ export default function RunsPage() {
                   <div className="rounded-xl bg-slate-800 p-3">Artifacts: {run.artifact_count}</div>
                   <div className="rounded-xl bg-slate-800 p-3">Latest Snapshot: {run.latest_snapshot ?? "N/A"}</div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         )}
