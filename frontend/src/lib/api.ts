@@ -21,3 +21,19 @@ export async function getRunById(runId: string) {
   if (!res.ok) throw new Error("Failed to fetch run");
   return res.json();
 }
+
+export async function askCopilot(matchId: string, question: string) {
+  const res = await fetch("http://127.0.0.1:8000/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      match_id: matchId,
+      question,
+    }),
+  });
+
+  if (!res.ok) throw new Error("Failed to get copilot answer");
+  return res.json();
+}

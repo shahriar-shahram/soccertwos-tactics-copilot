@@ -1,8 +1,10 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
 
 from app.services.match_loader import load_all_matches, load_match_by_id
 from app.services.run_loader import load_all_runs, load_run_by_id
+from app.services.copilot_service import answer_question
 
 app = FastAPI(title="SoccerTwos Tactics Copilot API")
 
@@ -13,6 +15,11 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+class ChatRequest(BaseModel):
+    match_id: str
+    question: str
 
 
 @app.get("/")
@@ -58,3 +65,8 @@ def get_run(run_id: str):
     if run is None:
         raise HTTPException(status_code=404, detail="Run not found")
     return run
+
+
+@app.post("/chat")
+def chat(request: ChatRequest):
+    return answer_question(request.match_id, request.question)
