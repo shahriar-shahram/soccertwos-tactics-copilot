@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import TopNav from "../components/TopNav";
 import { getMatches } from "../lib/api";
 
@@ -35,11 +36,15 @@ export default function HomePage() {
           ) : (
             <div className="space-y-4">
               {matches.map((match) => (
-                <div key={match.id} className="rounded-xl bg-slate-800 p-4">
+                <Link
+                  key={match.id}
+                  to={`/replay?id=${match.id}`}
+                  className="block rounded-xl bg-slate-800 p-4 transition hover:bg-slate-700"
+                >
                   <div className="text-lg font-medium">{match.title}</div>
                   <div className="text-sm text-slate-400">Score: {match.score}</div>
                   <div className="mt-2 text-slate-300">{match.summary}</div>
-                </div>
+                </Link>
               ))}
             </div>
           )}

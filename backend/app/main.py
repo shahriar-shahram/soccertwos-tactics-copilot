@@ -1,5 +1,7 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
+from app.services.match_loader import load_all_matches, load_match_by_id
 
 app = FastAPI(title="SoccerTwos Tactics Copilot API")
 
@@ -11,30 +13,34 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
+@app.get("/")
+def root():
+    return {"message": "SoccerTwos Tactics Copilot API"}
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
 
+
 @app.get("/matches")
 def list_matches():
+    matches = load_all_matches()
     return [
         {
-            "id": "match_001",
-            "title": "Blue vs Orange Demo Match",
-            "score": "3-2",
-            "summary": "Blue side won after stronger late defensive rotations."
+            "id": match["id"],
+            "title": match["title"],
+            "score": f'{match["score"]["blue"]}-{match["score"]["orange"]}',
+            "summary": match["summary"],
         }
+        for match in matches
     ]
+
 
 @app.get("/matches/{match_id}")
 def get_match(match_id: str):
-    return {
-        "id": match_id,
-        "title": "Blue vs Orange Demo Match",
-        "score": "3-2",
-        "summary": "Blue side won after stronger late defensive rotations.",
-        "events": [
-            {"step": 120, "type": "goal", "team": "blue", "text": "Blue scored from a quick counter."},
-            {"step": 240, "type": "goal", "team": "orange", "text": "Orange equalized after midfield pressure."}
-        ]
-    }
+    match = load_match_by_id(match_id)
+    if match is None:
+        raise HTTPException(status_code=404, detail="Match not found")
+    return match
