@@ -1,0 +1,75 @@
+{
+  "id": "match_001",
+  "title": "Blue vs Orange Demo Match",
+  "score": {
+    "blue": 3,
+    "orange": 2
+  },
+  "summary": "Blue won after better late-game defensive recovery and cleaner counterattacks.",
+  "teams": {
+    "blue": "Policy Blue",
+    "orange": "Policy Orange"
+  },
+  "duration_steps": 500,
+  "policy_id": "soccertwos_poca_v1",
+  "elo_estimate": 1314.9,
+  "video_path": "/replays/match_001.mp4",
+  "events": [
+    {
+      "step": 45,
+      "type": "pressure",
+      "team": "orange",
+      "tag": "press",
+      "text": "Orange forced Blue deep with early high pressure."
+    },
+    {
+      "step": 120,
+      "type": "goal",
+      "team": "blue",
+      "tag": "counterattack",
+      "text": "Blue scored after a transition from midfield."
+    },
+    {
+      "step": 180,
+      "type": "recovery",
+      "team": "blue",
+      "tag": "defensive_shape",
+      "text": "Blue recovered into shape and blocked a central lane."
+    },
+    {
+      "step": 240,
+      "type": "goal",
+      "team": "orange",
+      "tag": "sustained_pressure",
+      "text": "Orange equalized after sustained pressure."
+    },
+    {
+      "step": 320,
+      "type": "chance",
+      "team": "blue",
+      "tag": "transition",
+      "text": "Blue created a high-value transition chance from a loose ball."
+    },
+    {
+      "step": 410,
+      "type": "mistake",
+      "team": "orange",
+      "tag": "double_commit",
+      "text": "Orange double-committed and left the goal exposed."
+    },
+    {
+      "step": 430,
+      "type": "goal",
+      "team": "blue",
+      "tag": "punish_mistake",
+      "text": "Blue capitalized immediately on the defensive gap."
+    },
+    {
+      "step": 470,
+      "type": "recovery",
+      "team": "blue",
+      "tag": "game_management",
+      "text": "Blue slowed the game and protected the lead with safer shape."
+    }
+  ]
+}
