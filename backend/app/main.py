@@ -15,7 +15,10 @@ PROJECT_ROOT = BACKEND_ROOT.parent
 
 load_dotenv(BACKEND_ROOT / ".env")
 
-cors_origins_raw = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
+cors_origins_raw = os.getenv(
+    "CORS_ALLOWED_ORIGINS",
+    "http://localhost:5173,http://127.0.0.1:5173",
+)
 cors_origins = [origin.strip() for origin in cors_origins_raw.split(",") if origin.strip()]
 
 app = FastAPI(title="SoccerTwos Tactics Copilot API")
@@ -42,23 +45,6 @@ def root():
 @app.get("/health")
 def health():
     return {"status": "ok"}
-
-
-@app.get("/debug/files")
-def debug_files():
-    matches_dir = PROJECT_ROOT / "data" / "processed" / "matches"
-    playbook_path = PROJECT_ROOT / "docs" / "playbooks" / "basic_tactics.md"
-
-    return {
-        "cwd": str(Path.cwd()),
-        "backend_root": str(BACKEND_ROOT),
-        "project_root": str(PROJECT_ROOT),
-        "matches_dir": str(matches_dir),
-        "matches_dir_exists": matches_dir.exists(),
-        "matches_files": sorted([p.name for p in matches_dir.glob("*.json")]) if matches_dir.exists() else [],
-        "playbook_path": str(playbook_path),
-        "playbook_exists": playbook_path.exists(),
-    }
 
 
 @app.get("/matches")
