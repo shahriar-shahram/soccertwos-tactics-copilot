@@ -22,6 +22,7 @@ type MatchDetail = {
   duration_steps?: number;
   policy_id?: string;
   elo_estimate?: number;
+  video_path?: string;
   teams?: {
     blue: string;
     orange: string;
@@ -110,14 +111,25 @@ export default function ReplayPage() {
 
             <div className="mb-6 rounded-3xl border border-white/10 bg-slate-900 p-6 shadow-xl shadow-slate-950/30">
               <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-2xl font-semibold">Replay Canvas</h2>
+                <h2 className="text-2xl font-semibold">Replay Video</h2>
                 <div className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-400">
-                  Visual playback placeholder
+                  Demo playback
                 </div>
               </div>
-              <div className="flex h-[380px] items-center justify-center rounded-2xl border border-dashed border-white/10 bg-slate-950 text-slate-500">
-                Replay visualization placeholder
-              </div>
+
+              {match.video_path ? (
+                <video
+                  controls
+                  className="w-full rounded-2xl border border-white/10 bg-slate-950"
+                >
+                  <source src={match.video_path} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <div className="flex h-[380px] items-center justify-center rounded-2xl border border-dashed border-white/10 bg-slate-950 text-slate-500">
+                  No replay video attached yet
+                </div>
+              )}
             </div>
 
             <div className="rounded-3xl border border-white/10 bg-slate-900 p-6 shadow-xl shadow-slate-950/30">

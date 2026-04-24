@@ -1,3 +1,7 @@
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -6,11 +10,16 @@ from app.services.match_loader import load_all_matches, load_match_by_id
 from app.services.run_loader import load_all_runs, load_run_by_id
 from app.services.copilot_service import answer_question
 
+load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+
+cors_origins_raw = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
+cors_origins = [origin.strip() for origin in cors_origins_raw.split(",") if origin.strip()]
+
 app = FastAPI(title="SoccerTwos Tactics Copilot API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
