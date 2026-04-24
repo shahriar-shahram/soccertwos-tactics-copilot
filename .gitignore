@@ -28,3 +28,6 @@ Obj/
 Build/
 Logs/
 UserSettings/
+
+# Private local notes
+private/
