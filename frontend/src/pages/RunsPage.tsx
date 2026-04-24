@@ -29,31 +29,52 @@ export default function RunsPage() {
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <TopNav />
       <main className="mx-auto max-w-6xl px-6 py-10">
-        <h1 className="mb-4 text-3xl font-bold">Training Runs</h1>
-        <p className="mb-8 max-w-3xl text-slate-300">
-          Available model artifacts and experiment outputs for the SoccerTwos copilot.
-        </p>
+        <div className="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <div className="mb-2 inline-flex rounded-full bg-blue-500/15 px-3 py-1 text-xs font-medium text-blue-300">
+              Experiment Tracking
+            </div>
+            <h1 className="text-4xl font-bold tracking-tight">Training Runs</h1>
+            <p className="mt-3 max-w-3xl text-slate-300">
+              Available model artifacts and experiment outputs for the SoccerTwos tactics copilot.
+            </p>
+          </div>
+        </div>
 
         {loading ? (
           <p className="text-slate-400">Loading runs...</p>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-5">
             {runs.map((run) => (
               <Link
                 key={run.run_id}
                 to={`/run?id=${run.run_id}`}
-                className="block rounded-2xl border border-white/10 bg-slate-900 p-6 transition hover:bg-slate-800"
+                className="block rounded-3xl border border-white/10 bg-slate-900 p-6 shadow-xl shadow-slate-950/30 transition hover:bg-slate-800"
               >
-                <h2 className="mb-3 text-2xl font-semibold">{run.run_id}</h2>
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-2xl font-semibold">{run.run_id}</h2>
+                  <div className="rounded-full bg-slate-800 px-3 py-1 text-xs text-slate-400">
+                    {run.artifact_count} artifacts
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
-                  <div className="rounded-xl bg-slate-800 p-3">Top ONNX: {run.has_top_level_onnx ? "Yes" : "No"}</div>
-                  <div className="rounded-xl bg-slate-800 p-3">Checkpoint: {run.has_checkpoint ? "Yes" : "No"}</div>
-                  <div className="rounded-xl bg-slate-800 p-3">Config: {run.has_config ? "Yes" : "No"}</div>
-                  <div className="rounded-xl bg-slate-800 p-3">README: {run.has_readme ? "Yes" : "No"}</div>
-                  <div className="rounded-xl bg-slate-800 p-3">Timers: {run.has_timers ? "Yes" : "No"}</div>
-                  <div className="rounded-xl bg-slate-800 p-3">Status: {run.has_status ? "Yes" : "No"}</div>
-                  <div className="rounded-xl bg-slate-800 p-3">Artifacts: {run.artifact_count}</div>
-                  <div className="rounded-xl bg-slate-800 p-3">Latest Snapshot: {run.latest_snapshot ?? "N/A"}</div>
+                  <div className="rounded-2xl bg-slate-800 p-4">
+                    <div className="text-sm text-slate-400">Top ONNX</div>
+                    <div className="mt-2 font-medium">{run.has_top_level_onnx ? "Available" : "Missing"}</div>
+                  </div>
+                  <div className="rounded-2xl bg-slate-800 p-4">
+                    <div className="text-sm text-slate-400">Checkpoint</div>
+                    <div className="mt-2 font-medium">{run.has_checkpoint ? "Available" : "Missing"}</div>
+                  </div>
+                  <div className="rounded-2xl bg-slate-800 p-4">
+                    <div className="text-sm text-slate-400">Config</div>
+                    <div className="mt-2 font-medium">{run.has_config ? "Available" : "Missing"}</div>
+                  </div>
+                  <div className="rounded-2xl bg-slate-800 p-4">
+                    <div className="text-sm text-slate-400">Latest Snapshot</div>
+                    <div className="mt-2 font-medium">{run.latest_snapshot ?? "N/A"}</div>
+                  </div>
                 </div>
               </Link>
             ))}
