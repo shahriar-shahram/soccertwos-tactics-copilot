@@ -6,8 +6,13 @@ COPY backend/requirements.txt /app/backend/requirements.txt
 RUN pip install --no-cache-dir -r /app/backend/requirements.txt
 
 COPY backend /app/backend
-COPY data /app/data
 COPY docs /app/docs
+
+RUN mkdir -p /app/data/processed/matches
+COPY data/processed/matches/match_001.json /app/data/processed/matches/match_001.json
+
+RUN mkdir -p /app/data/rag_chunks
+COPY data/rag_chunks/rag_chunks.json /app/data/rag_chunks/rag_chunks.json
 
 WORKDIR /app/backend
 
