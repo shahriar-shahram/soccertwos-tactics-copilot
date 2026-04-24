@@ -10,7 +10,10 @@ from app.services.match_loader import load_all_matches, load_match_by_id
 from app.services.run_loader import load_all_runs, load_run_by_id
 from app.services.copilot_service import answer_question
 
-load_dotenv(Path(__file__).resolve().parents[1] / ".env")
+BACKEND_ROOT = Path(__file__).resolve().parents[1]
+PROJECT_ROOT = BACKEND_ROOT.parent
+
+load_dotenv(BACKEND_ROOT / ".env")
 
 cors_origins_raw = os.getenv("CORS_ALLOWED_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
 cors_origins = [origin.strip() for origin in cors_origins_raw.split(",") if origin.strip()]
@@ -43,15 +46,13 @@ def health():
 
 @app.get("/debug/files")
 def debug_files():
-    backend_root = Path(__file__).resolve().parents[1]
-    project_root = Path(__file__).resolve().parents[3]
-    matches_dir = project_root / "data" / "processed" / "matches"
-    playbook_path = project_root / "docs" / "playbooks" / "basic_tactics.md"
+    matches_dir = PROJECT_ROOT / "data" / "processed" / "matches"
+    playbook_path = PROJECT_ROOT / "docs" / "playbooks" / "basic_tactics.md"
 
     return {
         "cwd": str(Path.cwd()),
-        "backend_root": str(backend_root),
-        "project_root": str(project_root),
+        "backend_root": str(BACKEND_ROOT),
+        "project_root": str(PROJECT_ROOT),
         "matches_dir": str(matches_dir),
         "matches_dir_exists": matches_dir.exists(),
         "matches_files": sorted([p.name for p in matches_dir.glob("*.json")]) if matches_dir.exists() else [],
