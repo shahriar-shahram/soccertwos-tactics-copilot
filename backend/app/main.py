@@ -41,6 +41,25 @@ def health():
     return {"status": "ok"}
 
 
+@app.get("/debug/files")
+def debug_files():
+    backend_root = Path(__file__).resolve().parents[1]
+    project_root = Path(__file__).resolve().parents[3]
+    matches_dir = project_root / "data" / "processed" / "matches"
+    playbook_path = project_root / "docs" / "playbooks" / "basic_tactics.md"
+
+    return {
+        "cwd": str(Path.cwd()),
+        "backend_root": str(backend_root),
+        "project_root": str(project_root),
+        "matches_dir": str(matches_dir),
+        "matches_dir_exists": matches_dir.exists(),
+        "matches_files": sorted([p.name for p in matches_dir.glob("*.json")]) if matches_dir.exists() else [],
+        "playbook_path": str(playbook_path),
+        "playbook_exists": playbook_path.exists(),
+    }
+
+
 @app.get("/matches")
 def list_matches():
     matches = load_all_matches()
