@@ -1,0 +1,16 @@
+{
+  "matchup_id": "baseline_s1_vs_baseline_s1",
+  "blue_policy": "soccertwos_poca_baseline_s1",
+  "orange_policy": "soccertwos_poca_baseline_s1",
+  "matches_played": 0,
+  "blue_wins": 0,
+  "orange_wins": 0,
+  "draws": 0,
+  "blue_win_rate": 0.0,
+  "orange_win_rate": 0.0,
+  "draw_rate": 0.0,
+  "avg_goals_blue": 0.0,
+  "avg_goals_orange": 0.0,
+  "avg_goal_diff_blue_minus_orange": 0.0,
+  "notes": "Initial evaluation summary placeholder."
+}

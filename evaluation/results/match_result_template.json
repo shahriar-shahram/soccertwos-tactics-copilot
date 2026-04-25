@@ -1,0 +1,16 @@
+{
+  "match_id": "eval_baseline_s1_vs_baseline_s1_001",
+  "blue_policy": "soccertwos_poca_baseline_s1",
+  "orange_policy": "soccertwos_poca_baseline_s1",
+  "score": {
+    "blue": 0,
+    "orange": 0
+  },
+  "winner": "draw",
+  "is_draw": true,
+  "duration_steps": 0,
+  "seed": null,
+  "timestamp": "",
+  "video_path": null,
+  "notes_path": null
+}
