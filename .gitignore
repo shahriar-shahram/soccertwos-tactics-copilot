@@ -16,10 +16,23 @@ build/
 
 # Training artifacts
 training/checkpoints/
-training/results/
+training/results/*
+!training/results/soccertwos_poca_baseline_s1/
+training/results/soccertwos_poca_baseline_s1/*
+!training/results/soccertwos_poca_baseline_s1/configuration.yaml
+!training/results/soccertwos_poca_baseline_s1/run_logs/
+training/results/soccertwos_poca_baseline_s1/run_logs/*
+!training/results/soccertwos_poca_baseline_s1/run_logs/timers.json
+!training/results/soccertwos_poca_baseline_s1/run_logs/training_status.json
+!training/results/soccertwos_poca_baseline_s1/SoccerTwos.onnx
+
 training/runs/
 data/raw/
-data/processed/
+data/processed/*
+!data/processed/policies/
+data/processed/policies/*
+!data/processed/policies/policies.json
+!data/processed/policies/policy_summaries.json
 
 # Unity
 Library/

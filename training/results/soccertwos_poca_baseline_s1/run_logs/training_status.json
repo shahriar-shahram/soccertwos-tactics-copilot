@@ -1,0 +1,93 @@
+{
+    "SoccerTwos": {
+        "checkpoints": [
+            {
+                "steps": 16999986,
+                "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-16999986.onnx",
+                "reward": 0.0,
+                "creation_time": 1777086282.0720139,
+                "auxillary_file_paths": [
+                    "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-16999986.pt"
+                ]
+            },
+            {
+                "steps": 17499981,
+                "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-17499981.onnx",
+                "reward": 0.0,
+                "creation_time": 1777086945.1101804,
+                "auxillary_file_paths": [
+                    "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-17499981.pt"
+                ]
+            },
+            {
+                "steps": 17999942,
+                "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-17999942.onnx",
+                "reward": 0.0,
+                "creation_time": 1777087637.5069637,
+                "auxillary_file_paths": [
+                    "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-17999942.pt"
+                ]
+            },
+            {
+                "steps": 18499851,
+                "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-18499851.onnx",
+                "reward": 0.0,
+                "creation_time": 1777088299.6255674,
+                "auxillary_file_paths": [
+                    "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-18499851.pt"
+                ]
+            },
+            {
+                "steps": 18999943,
+                "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-18999943.onnx",
+                "reward": 0.0,
+                "creation_time": 1777088963.9943793,
+                "auxillary_file_paths": [
+                    "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-18999943.pt"
+                ]
+            },
+            {
+                "steps": 19499987,
+                "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-19499987.onnx",
+                "reward": 0.0,
+                "creation_time": 1777089629.2538142,
+                "auxillary_file_paths": [
+                    "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-19499987.pt"
+                ]
+            },
+            {
+                "steps": 19999957,
+                "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-19999957.onnx",
+                "reward": 0.0,
+                "creation_time": 1777090295.179951,
+                "auxillary_file_paths": [
+                    "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-19999957.pt"
+                ]
+            },
+            {
+                "steps": 20000018,
+                "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-20000018.onnx",
+                "reward": 0.0,
+                "creation_time": 1777090295.2499108,
+                "auxillary_file_paths": [
+                    "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-20000018.pt"
+                ]
+            }
+        ],
+        "elo": 1485.9679549808366,
+        "final_checkpoint": {
+            "steps": 20000018,
+            "file_path": "results/soccertwos_poca_baseline_s1/SoccerTwos.onnx",
+            "reward": 0.0,
+            "creation_time": 1777090295.2499108,
+            "auxillary_file_paths": [
+                "results/soccertwos_poca_baseline_s1/SoccerTwos/SoccerTwos-20000018.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.1.1+cu121"
+    }
+}

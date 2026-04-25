@@ -1,0 +1,29 @@
+[
+  {
+    "policy_id": "soccertwos_poca_baseline_s1",
+    "display_name": "POCA Baseline S1",
+    "algorithm": "POCA",
+    "reward_variant": "baseline",
+    "style_label": "balanced",
+    "notes": "Baseline POCA self-play policy trained for 20M steps on strict CPU-only mode.",
+    "training_run_id": "soccertwos_poca_baseline_s1"
+  },
+  {
+    "policy_id": "soccertwos_poca_aggressive_s1",
+    "display_name": "POCA Aggressive S1",
+    "algorithm": "POCA",
+    "reward_variant": "aggressive_transition",
+    "style_label": "aggressive",
+    "notes": "Planned aggressive variant emphasizing pressure and faster transition play.",
+    "training_run_id": "soccertwos_poca_aggressive_s1"
+  },
+  {
+    "policy_id": "soccertwos_poca_safe_s1",
+    "display_name": "POCA Defensive S1",
+    "algorithm": "POCA",
+    "reward_variant": "defensive_recovery",
+    "style_label": "safe",
+    "notes": "Planned defensive variant emphasizing recovery and safer shape retention.",
+    "training_run_id": "soccertwos_poca_safe_s1"
+  }
+]
