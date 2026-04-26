@@ -39,8 +39,15 @@
       "recovery": 0.0,
       "pressure": 0.0
     },
-    "style_summary": "Aggressive variant not trained yet.",
-    "training_summary": null
+    "style_summary": "Aggressive variant trained to 20M steps. Evaluation summary pending.",
+    "training_summary": {
+      "max_steps": 20000000,
+      "elapsed_seconds": 26398.403,
+      "elapsed_hours_approx": 7.33,
+      "final_elo": 1284.072,
+      "device": "cpu",
+      "final_checkpoint": "SoccerTwos-20000070.onnx"
+    }
   },
   {
     "policy_id": "soccertwos_poca_safe_s1",

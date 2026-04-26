@@ -26,6 +26,15 @@ training/results/soccertwos_poca_baseline_s1/run_logs/*
 !training/results/soccertwos_poca_baseline_s1/run_logs/training_status.json
 !training/results/soccertwos_poca_baseline_s1/SoccerTwos.onnx
 
+!training/results/soccertwos_poca_aggressive_s1/
+training/results/soccertwos_poca_aggressive_s1/*
+!training/results/soccertwos_poca_aggressive_s1/configuration.yaml
+!training/results/soccertwos_poca_aggressive_s1/run_logs/
+training/results/soccertwos_poca_aggressive_s1/run_logs/*
+!training/results/soccertwos_poca_aggressive_s1/run_logs/timers.json
+!training/results/soccertwos_poca_aggressive_s1/run_logs/training_status.json
+!training/results/soccertwos_poca_aggressive_s1/SoccerTwos.onnx
+
 training/runs/
 data/raw/
 data/processed/*
