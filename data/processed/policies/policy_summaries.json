@@ -75,20 +75,20 @@
   },
   {
     "policy_id": "soccertwos_poca_safe_s1",
-    "matches_played": 0,
-    "wins": 0,
-    "losses": 0,
+    "matches_played": 50,
+    "wins": 28,
+    "losses": 22,
     "draws": 0,
-    "win_rate": 0.0,
-    "avg_goals_scored": 0.0,
-    "avg_goals_conceded": 0.0,
+    "win_rate": 0.56,
+    "avg_goals_scored": 8.46,
+    "avg_goals_conceded": 7.48,
     "event_rates": {
       "counterattack": 0.0,
       "double_commit": 0.0,
       "recovery": 0.0,
       "pressure": 0.0
     },
-    "style_summary": "Defensive variant trained to 20M steps. Evaluation summary pending.",
+    "style_summary": "Defensive self-play policy shows moderate blue-side advantage while maintaining better balance than the aggressive variant.",
     "training_summary": {
       "max_steps": 20000000,
       "elapsed_seconds": 26351.760,
@@ -96,6 +96,18 @@
       "final_elo": 1692.464,
       "device": "cpu",
       "final_checkpoint": "SoccerTwos-20000776.onnx"
+    },
+    "evaluation_summary": {
+      "matchup_id": "safe_s1_vs_safe_s1",
+      "matches_played": 50,
+      "blue_wins": 28,
+      "orange_wins": 22,
+      "draws": 0,
+      "avg_goals_blue": 8.46,
+      "avg_goals_orange": 7.48,
+      "avg_goal_diff_blue_minus_orange": 0.98,
+      "avg_steps_per_match": 3815.36,
+      "timeout_matches": 10
     }
   }
 ]
