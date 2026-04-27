@@ -1,142 +1,137 @@
-# Azure SoccerTwos Tactics Copilot
+# SoccerTwos Tactical Copilot (AI Product)
 
-An interactive AI product project that combines reinforcement learning match analysis, replay review, and grounded tactical question answering for Unity ML-Agents SoccerTwos.
+An end-to-end deployed AI system for analyzing reinforcement learning gameplay in Unity ML-Agents SoccerTwos, combining replay inspection, retrieval-based reasoning, and grounded tactical insights.
 
-## Live Demo
+---
 
-- Frontend: https://azure-soccertwos-tactics-copilot.vercel.app
-- Backend API: https://soccertwos-copilot-api.onrender.com
-- GitHub: https://github.com/shahriar-shahram/azure-soccertwos-tactics-copilot
+## 🔗 Live Demo
 
-## Overview
+- 🌐 Frontend (Vercel): https://soccertwos-tactics-copilot.vercel.app  
+- ⚙️ Backend API (Render): https://soccertwos-copilot-api.onrender.com  
+- 💻 GitHub: https://github.com/shahriar-shahram/azure-soccertwos-tactics-copilot  
 
-This project turns SoccerTwos training artifacts and replay summaries into a lightweight coaching and analysis product.
+---
 
-It includes:
+## 🧠 Overview
 
-- a React/Vite frontend for replay viewing, runs browsing, and copilot interaction
-- a FastAPI backend for match loading, run inspection, and grounded Q&A
-- Azure AI Search for retrieval over tactical notes, match summaries, and indexed event chunks
-- Azure OpenAI for final grounded answer generation
-- a replay page with an embedded demo clip and event timeline
-- a runs page for experiment artifacts and model outputs
+This project turns RL-generated gameplay data into an interactive AI product.
 
-The current version uses a curated demonstration match and tactics notes to showcase the full product flow.
+It enables:
 
-## Core Features
+- replay-based match analysis  
+- grounded tactical Q&A  
+- structured inspection of RL behaviors  
 
-- **Replay analysis**
-  - Match summary
-  - Scoreline and metadata
-  - Event timeline
-  - Embedded replay video
+Unlike typical ML projects, this system is **fully deployed** and designed as a real user-facing product.
 
-- **Grounded tactics copilot**
-  - Ask natural-language questions about a match
-  - Retrieve relevant tactical notes and event chunks from Azure AI Search
-  - Generate grounded answers with Azure OpenAI
-  - Display source snippets used for the answer
+---
 
-- **Runs and artifacts view**
-  - Inspect training runs and stored outputs
-  - Browse available experiment artifacts
+## ⚙️ Core Features
 
-## Example Questions
+### 🎮 Replay Analysis
+- Match summary and scoreline  
+- Event timeline  
+- Embedded replay video  
+- Tactical context  
 
-- Why did blue win?
-- What was Orange's biggest mistake?
-- What tactical pattern mattered most?
-- Summarize this match in coaching language.
+### 🤖 Tactical Copilot (RAG)
+- Ask natural-language questions  
+- Retrieve relevant match events + tactical notes  
+- Generate grounded answers based only on retrieved context  
+- Display source snippets used for reasoning  
 
-## System Architecture
+### 📊 Runs & Artifacts
+- Browse training runs  
+- Inspect model outputs  
+- View experiment artifacts  
+
+---
+
+## 💡 Example Questions
+
+- Why did blue win?  
+- What was Orange's biggest mistake?  
+- What tactical pattern mattered most?  
+- Summarize this match in coaching language  
+
+---
+
+## 🏗️ System Architecture
 
 ```text
-Unity SoccerTwos / RL artifacts / replay summaries
-                |
-                v
-        Data + tactical notes + event chunks
-                |
-                v
-         Azure AI Search (retrieval layer)
-                |
-                v
-    FastAPI backend on Render (application layer)
-                |
-                v
-     Azure OpenAI (grounded answer generation)
-                |
-                v
-      React/Vite frontend on Vercel (UI layer)
+Unity ML-Agents (SoccerTwos)
+        ↓
+Match data + tactical notes + event chunks
+        ↓
+Local Retrieval Layer (RAG chunks)
+        ↓
+FastAPI Backend (Render)
+        ↓
+Grounded Answer Generation
+        ↓
+React Frontend (Vercel)
 ```
 
-## Tech Stack
+---
+
+## 🧰 Tech Stack
 
 ### Frontend
-- React
-- TypeScript
-- Vite
-- Tailwind CSS
+- React + TypeScript  
+- Vite  
+- Tailwind CSS  
 
 ### Backend
-- FastAPI
-- Python
-- Uvicorn
+- FastAPI  
+- Python  
+- Uvicorn  
 
-### AI / Cloud
-- Azure AI Search
-- Azure OpenAI
-- Render
-- Vercel
+### AI / System Design
+- Retrieval-Augmented Generation (RAG)  
+- Structured event indexing  
+- Prompt-based grounded reasoning  
 
-### RL / Simulation Context
-- Unity ML-Agents
-- SoccerTwos
-- ONNX model artifacts
+### Deployment
+- Vercel (frontend)  
+- Render (backend)  
 
-## Repository Structure
+### RL Context
+- Unity ML-Agents  
+- SoccerTwos  
+- ONNX policy artifacts  
+
+---
+
+## 📁 Repository Structure
 
 ```text
 azure-soccertwos-tactics-copilot/
-├── backend/                  # FastAPI backend
+├── backend/
 │   ├── app/
-│   │   ├── routes/
+│   │   ├── services/
 │   │   ├── schemas/
-│   │   └── services/
-│   └── requirements.txt
-├── frontend/                 # React/Vite frontend
-│   ├── public/
-│   │   └── replays/
-│   └── src/
+│   │   └── routes/
+├── frontend/
 ├── data/
-│   ├── processed/
-│   │   └── matches/
-│   └── rag_chunks/
-├── docs/
-│   └── playbooks/
 ├── training/
-│   └── results/
-└── Dockerfile.backend
+└── docs/
 ```
 
-## Local Development
+---
 
-### 1) Backend
+## 🧪 Local Development
+
+### Backend
 
 ```bash
 cd backend
-python3 -m venv .venv
-source .venv/bin/activate
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend runs at:
-
-```text
-http://127.0.0.1:8000
-```
-
-### 2) Frontend
+### Frontend
 
 ```bash
 cd frontend
@@ -144,90 +139,79 @@ npm install
 npm run dev
 ```
 
-Frontend runs at:
+---
 
-```text
-http://localhost:5173
-```
-
-## Environment Variables
+## 🔐 Environment Variables
 
 ### Backend
-Create `backend/.env` with:
 
 ```env
-AZURE_OPENAI_ENDPOINT=https://eastus.api.cognitive.microsoft.com/
-AZURE_OPENAI_API_KEY=YOUR_AZURE_OPENAI_KEY
-AZURE_OPENAI_CHAT_DEPLOYMENT=soccer-chat
-
-AZURE_SEARCH_ENDPOINT=https://srch-soccertwos-shahriar.search.windows.net
-AZURE_SEARCH_API_KEY=YOUR_AZURE_SEARCH_KEY
-AZURE_SEARCH_INDEX_NAME=soccer-rag-index
-
-AZURE_STORAGE_ACCOUNT=stsoccertwosshahriar
-AZURE_STORAGE_CONTAINER=rag-docs
-
 CORS_ALLOWED_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
 ```
 
 ### Frontend
-Set:
 
 ```env
 VITE_API_BASE_URL=http://127.0.0.1:8000
 ```
 
-For production, this points to the hosted backend.
+For production, set:
 
-## Sample Data Included
+```env
+VITE_API_BASE_URL=https://soccertwos-copilot-api.onrender.com
+```
 
-The deployed demo currently includes:
+---
 
-- one seeded match:
-  - `match_001`
-- one tactical playbook:
-  - `basic_tactics.md`
-- generated RAG chunks used for retrieval
-- one replay video attached to the demo match
+## 📦 Sample Data
 
-## Deployment
+Includes:
 
-### Frontend
-Hosted on **Vercel**.
+- 1 demo match (`match_001`)  
+- Tactical playbook  
+- RAG chunks  
+- Replay video  
 
-### Backend
-Hosted on **Render**.
+---
 
-### Retrieval / Generation
-- Azure AI Search for retrieval
-- Azure OpenAI for grounded answer generation
+## 🚀 Deployment
 
-## Why This Project Matters
+- Frontend → Vercel  
+- Backend → Render  
+- Retrieval → Local RAG chunks  
 
-This project was built to demonstrate a practical AI product workflow around RL-generated behavior:
+---
 
-- converting experiment outputs into a user-facing product
-- connecting replay review with grounded Q&A
-- combining retrieval and LLM generation in a real application
-- shipping a working cloud-based interface instead of only offline notebooks or training code
+## 🎯 Why This Project Matters
 
-## Current Limitations
+This project demonstrates:
 
-- The replay experience currently uses a recorded demo clip rather than full synchronized state playback
-- The demo is centered on a curated seeded match instead of a full match database
-- The runs page is lightweight and can be expanded with richer experiment metadata and plots
+- building a **full-stack AI system**, not just models  
+- connecting RL outputs to real user workflows  
+- implementing a **retrieval + reasoning pipeline**  
+- deploying a **live AI product**  
 
-## Future Improvements
+---
 
-- multi-match indexing and search
-- richer replay controls with synchronized event stepping
-- automatic ingestion of new match summaries and trajectories
-- better run comparison dashboards
-- policy-level analytics and failure-mode summaries
-- more robust deployment packaging for all artifacts
+## ⚠️ Limitations
 
-## Author
+- Single demo match  
+- Simplified retrieval (no embeddings yet)  
+- Replay not fully synchronized with state  
 
-Shahriar Shahram
+---
 
-- GitHub: https://github.com/shahriar-shahram
+## 🔮 Future Work
+
+- vector embeddings (FAISS / cosine similarity)  
+- multi-match indexing  
+- richer replay controls  
+- analytics dashboards  
+- LangChain / agent integration  
+
+---
+
+## 👤 Author
+
+Shahriar Shahram  
+- GitHub: https://github.com/shahriar-shahram  
