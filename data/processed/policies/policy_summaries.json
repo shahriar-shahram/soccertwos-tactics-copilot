@@ -64,7 +64,14 @@
       "recovery": 0.0,
       "pressure": 0.0
     },
-    "style_summary": "Defensive variant not trained yet.",
-    "training_summary": null
+    "style_summary": "Defensive variant trained to 20M steps. Evaluation summary pending.",
+    "training_summary": {
+      "max_steps": 20000000,
+      "elapsed_seconds": 26351.760,
+      "elapsed_hours_approx": 7.32,
+      "final_elo": 1692.464,
+      "device": "cpu",
+      "final_checkpoint": "SoccerTwos-20000776.onnx"
+    }
   }
 ]

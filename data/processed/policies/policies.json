@@ -23,7 +23,7 @@
     "algorithm": "POCA",
     "reward_variant": "defensive_recovery",
     "style_label": "safe",
-    "notes": "Planned defensive variant emphasizing recovery and safer shape retention.",
+    "notes": "Defensive POCA self-play policy trained for 20M steps on strict CPU-only mode.",
     "training_run_id": "soccertwos_poca_safe_s1"
   }
 ]
