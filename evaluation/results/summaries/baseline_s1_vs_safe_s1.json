@@ -1,0 +1,21 @@
+{
+  "matchup_id": "baseline_s1_vs_safe_s1",
+  "blue_policy": "soccertwos_poca_baseline_s1",
+  "orange_policy": "soccertwos_poca_safe_s1",
+  "matches_played": 50,
+  "blue_wins": 27,
+  "orange_wins": 22,
+  "draws": 1,
+  "blue_win_rate": 0.54,
+  "orange_win_rate": 0.44,
+  "draw_rate": 0.02,
+  "avg_goals_blue": 8.54,
+  "avg_goals_orange": 7.66,
+  "avg_goal_diff_blue_minus_orange": 0.88,
+  "avg_steps_per_match": 3731.14,
+  "timeout_matches": 7,
+  "blue_timeout_wins": 2,
+  "orange_timeout_wins": 4,
+  "timeout_draws": 1,
+  "notes": "Cross-policy evaluation over 50 matches to 10 goals or 5000 steps. Blue used baseline_s1 and orange/purple used safe_s1. This direction slightly favors baseline_s1, but the reverse side assignment is required before drawing a side-balanced conclusion."
+}
