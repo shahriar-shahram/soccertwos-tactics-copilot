@@ -3,7 +3,7 @@ from pathlib import Path
 
 BACKEND_ROOT = Path(__file__).resolve().parents[2]
 PROJECT_ROOT = BACKEND_ROOT.parent
-MATCHES_DIR = PROJECT_ROOT / "data" / "processed" / "matches"
+MATCHES_DIR = BACKEND_ROOT / "deploy_seed" / "processed" / "matches"
 
 
 def load_all_matches() -> list[dict]:
