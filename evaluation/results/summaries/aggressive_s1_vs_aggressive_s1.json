@@ -1,0 +1,21 @@
+{
+  "matchup_id": "aggressive_s1_vs_aggressive_s1",
+  "blue_policy": "soccertwos_poca_aggressive_s1",
+  "orange_policy": "soccertwos_poca_aggressive_s1",
+  "matches_played": 50,
+  "blue_wins": 15,
+  "orange_wins": 32,
+  "draws": 3,
+  "blue_win_rate": 0.30,
+  "orange_win_rate": 0.64,
+  "draw_rate": 0.06,
+  "avg_goals_blue": 7.02,
+  "avg_goals_orange": 8.84,
+  "avg_goal_diff_blue_minus_orange": -1.82,
+  "avg_steps_per_match": 3633.18,
+  "timeout_matches": 7,
+  "blue_timeout_wins": 0,
+  "orange_timeout_wins": 4,
+  "timeout_draws": 3,
+  "notes": "Aggressive self-play evaluation over 50 matches to 10 goals or 5000 steps. Results show noticeable side asymmetry favoring purple/orange."
+}

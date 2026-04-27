@@ -38,20 +38,20 @@
   },
   {
     "policy_id": "soccertwos_poca_aggressive_s1",
-    "matches_played": 0,
-    "wins": 0,
-    "losses": 0,
-    "draws": 0,
-    "win_rate": 0.0,
-    "avg_goals_scored": 0.0,
-    "avg_goals_conceded": 0.0,
+    "matches_played": 50,
+    "wins": 15,
+    "losses": 32,
+    "draws": 3,
+    "win_rate": 0.30,
+    "avg_goals_scored": 7.02,
+    "avg_goals_conceded": 8.84,
     "event_rates": {
       "counterattack": 0.0,
       "double_commit": 0.0,
       "recovery": 0.0,
       "pressure": 0.0
     },
-    "style_summary": "Aggressive variant trained to 20M steps. Evaluation summary pending.",
+    "style_summary": "Aggressive self-play policy shows noticeable side asymmetry in evaluation, with purple/orange winning substantially more often than blue.",
     "training_summary": {
       "max_steps": 20000000,
       "elapsed_seconds": 26398.403,
@@ -59,6 +59,18 @@
       "final_elo": 1284.072,
       "device": "cpu",
       "final_checkpoint": "SoccerTwos-20000070.onnx"
+    },
+    "evaluation_summary": {
+      "matchup_id": "aggressive_s1_vs_aggressive_s1",
+      "matches_played": 50,
+      "blue_wins": 15,
+      "orange_wins": 32,
+      "draws": 3,
+      "avg_goals_blue": 7.02,
+      "avg_goals_orange": 8.84,
+      "avg_goal_diff_blue_minus_orange": -1.82,
+      "avg_steps_per_match": 3633.18,
+      "timeout_matches": 7
     }
   },
   {
