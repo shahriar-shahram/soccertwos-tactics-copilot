@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from app.services.azure_openai_service import generate_grounded_answer
-from app.services.azure_search_service import retrieve_chunks
+from app.services.local_llm_service import generate_grounded_answer
+from app.services.local_search_service import retrieve_chunks
 from app.services.match_loader import load_match_by_id
 
 BACKEND_ROOT = Path(__file__).resolve().parents[2]

@@ -1,8 +1,16 @@
 # Python
 __pycache__/
 *.pyc
+
+# Python environments
+venv/
 .venv/
+backend/.venv/
+backend/venv/
+
+# Env files / secrets
 .env
+backend/.env
 
 # Node
 node_modules/
@@ -62,3 +70,6 @@ UserSettings/
 
 # Private local notes
 private/
+
+# Local evaluation outputs
+evaluation/results/matches/
