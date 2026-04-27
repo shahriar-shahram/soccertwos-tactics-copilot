@@ -1,0 +1,21 @@
+{
+  "matchup_id": "aggressive_s1_vs_baseline_s1",
+  "blue_policy": "soccertwos_poca_aggressive_s1",
+  "orange_policy": "soccertwos_poca_baseline_s1",
+  "matches_played": 50,
+  "blue_wins": 30,
+  "orange_wins": 19,
+  "draws": 1,
+  "blue_win_rate": 0.60,
+  "orange_win_rate": 0.38,
+  "draw_rate": 0.02,
+  "avg_goals_blue": 8.60,
+  "avg_goals_orange": 7.68,
+  "avg_goal_diff_blue_minus_orange": 0.92,
+  "avg_steps_per_match": 3314.36,
+  "timeout_matches": 2,
+  "blue_timeout_wins": 0,
+  "orange_timeout_wins": 1,
+  "timeout_draws": 1,
+  "notes": "Reverse cross-policy evaluation over 50 matches to 10 goals or 5000 steps. Blue used aggressive_s1 and orange/purple used baseline_s1. Results again favor aggressive_s1, supporting that the aggressive policy outperforms baseline beyond side assignment effects."
+}
