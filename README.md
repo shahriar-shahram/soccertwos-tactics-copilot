@@ -8,7 +8,7 @@ An end-to-end deployed AI system for analyzing reinforcement learning gameplay i
 
 - 🌐 Frontend (Vercel): https://soccertwos-tactics-copilot.vercel.app  
 - ⚙️ Backend API (Render): https://soccertwos-copilot-api.onrender.com  
-- 💻 GitHub: https://github.com/shahriar-shahram/azure-soccertwos-tactics-copilot  
+- 💻 GitHub: https://github.com/shahriar-shahram/soccertwos-tactics-copilot  
 
 ---
 
@@ -105,7 +105,7 @@ React Frontend (Vercel)
 ## 📁 Repository Structure
 
 ```text
-azure-soccertwos-tactics-copilot/
+soccertwos-tactics-copilot/
 ├── backend/
 │   ├── app/
 │   │   ├── services/
