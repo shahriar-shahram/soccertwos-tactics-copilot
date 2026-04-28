@@ -19,7 +19,10 @@ load_dotenv(BACKEND_ROOT / ".env")
 
 cors_origins_raw = os.getenv(
     "CORS_ALLOWED_ORIGINS",
-    "http://localhost:5173,http://127.0.0.1:5173",
+    "https://soccer-tactics-copilot.vercel.app,"
+    "https://azure-soccertwos-tactics-copilot.vercel.app,"
+    "http://localhost:5173,"
+    "http://127.0.0.1:5173",
 )
 cors_origins = [origin.strip() for origin in cors_origins_raw.split(",") if origin.strip()]
 
