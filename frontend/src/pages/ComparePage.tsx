@@ -171,9 +171,9 @@ export default function ComparePage() {
                           </div>
                         </div>
 
-                        <div className="rounded-2xl bg-orange-50 p-4">
-                          <div className="text-xs font-bold uppercase tracking-[0.2em] text-orange-500">
-                            Orange
+                        <div className="rounded-2xl bg-violet-50 p-4">
+                          <div className="text-xs font-bold uppercase tracking-[0.2em] text-violet-500">
+                            Purple
                           </div>
                           <div className="mt-1 text-xl font-black">{orange?.name ?? m.orange_policy}</div>
                           <div className="mt-1 text-sm text-slate-600">
@@ -188,7 +188,7 @@ export default function ComparePage() {
                           <div className="text-2xl font-black">{m.avg_blue_score}</div>
                         </div>
                         <div className="rounded-2xl border border-slate-100 p-4">
-                          <div className="text-xs font-bold text-slate-400">Avg Orange</div>
+                          <div className="text-xs font-bold text-slate-400">Avg Purple</div>
                           <div className="text-2xl font-black">{m.avg_orange_score}</div>
                         </div>
                         <div className="rounded-2xl border border-slate-100 p-4">
