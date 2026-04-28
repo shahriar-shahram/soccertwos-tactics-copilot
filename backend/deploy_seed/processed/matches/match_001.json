@@ -1,6 +1,6 @@
 {
   "id": "match_001",
-  "title": "Blue vs Orange Demo Match",
+  "title": "Blue vs Purple Demo Match",
   "score": {
     "blue": 3,
     "orange": 2
@@ -8,7 +8,7 @@
   "summary": "Blue won after better late-game defensive recovery and cleaner counterattacks.",
   "teams": {
     "blue": "Policy Blue",
-    "orange": "Policy Orange"
+    "orange": "Policy Purple"
   },
   "duration_steps": 500,
   "policy_id": "soccertwos_poca_v1",
@@ -18,9 +18,9 @@
     {
       "step": 45,
       "type": "pressure",
-      "team": "orange",
+      "team": "purple",
       "tag": "press",
-      "text": "Orange forced Blue deep with early high pressure."
+      "text": "Purple forced Blue deep with early high pressure."
     },
     {
       "step": 120,
@@ -39,9 +39,9 @@
     {
       "step": 240,
       "type": "goal",
-      "team": "orange",
+      "team": "purple",
       "tag": "sustained_pressure",
-      "text": "Orange equalized after sustained pressure."
+      "text": "Purple equalized after sustained pressure."
     },
     {
       "step": 320,
@@ -53,9 +53,9 @@
     {
       "step": 410,
       "type": "mistake",
-      "team": "orange",
+      "team": "purple",
       "tag": "double_commit",
-      "text": "Orange double-committed and left the goal exposed."
+      "text": "Purple double-committed and left the goal exposed."
     },
     {
       "step": 430,
