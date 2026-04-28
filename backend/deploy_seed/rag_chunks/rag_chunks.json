@@ -58,5 +58,59 @@
     "source_type": "match_event",
     "source_name": "match_001.json",
     "content": "Step 470 | Team blue | Type recovery | Tag game_management | Blue slowed the game and protected the lead with safer shape."
+  },
+  {
+    "id": "policy::baseline",
+    "source_type": "policy_profile",
+    "source_name": "policy_summary.json",
+    "content": "Policy Baseline (baseline): The baseline policy is used as the reference agent for comparison. It represents the neutral benchmark behavior before emphasizing safer recovery or more aggressive pressure. Style: Balanced reference behavior. Best for: Benchmarking trained SoccerTwos agents. Strengths: Clear comparison anchor, Neutral behavior profile, Useful for replay explanation. Weaknesses: Less specialized than trained variants, Can struggle against pressure-heavy agents, May not recover as consistently as the safe policy."
+  },
+  {
+    "id": "policy::safe",
+    "source_type": "policy_profile",
+    "source_name": "policy_summary.json",
+    "content": "Policy Safe (safe): The safe policy prioritizes stable positioning, defensive recovery, and lower-risk decisions. It is designed to reduce tactical collapse and preserve structure during transitions. Style: Defensive recovery and lower-risk positioning. Best for: Explaining stability, safety, and conservative RL behavior. Strengths: Better recovery behavior, Lower overcommitment risk, More stable team shape. Weaknesses: May attack more slowly, Can miss fast counterattack chances, May apply less pressure than the aggressive agent."
+  },
+  {
+    "id": "policy::aggressive",
+    "source_type": "policy_profile",
+    "source_name": "policy_summary.json",
+    "content": "Policy Aggressive (aggressive): The aggressive policy applies faster pressure, attacks more directly, and accepts more tactical exposure. It is useful for studying high-reward, higher-risk RL behavior. Style: Fast pressure and direct attacking. Best for: Studying risk-reward tradeoffs in learned multi-agent behavior. Strengths: Creates faster attacking chances, Applies high pressure, Can exploit passive baseline behavior. Weaknesses: Can overcommit, May leave defensive gaps, Higher tactical volatility."
+  },
+  {
+    "id": "evaluation::aggressive_vs_baseline",
+    "source_type": "evaluation_summary",
+    "source_name": "matchup_results.json",
+    "content": "Matchup Aggressive vs Baseline (aggressive_vs_baseline): Aggressive outperformed Baseline in the side-balanced evaluation. It won 62% of matches with an average goal difference of +1.13. aggressive_s1 outperforms baseline_s1 after controlling for side assignment. Total matches: 100. aggressive wins: 62 with win rate 0.62. baseline wins: 35 with win rate 0.35. Draws: 3. Average goals: aggressive 8.76, baseline 7.63. Average goal difference: 1.13. Average steps per match: 3366.42. Timeout matches: 5. Tempo: Fast. Risk level: High."
+  },
+  {
+    "id": "evaluation::baseline_vs_safe",
+    "source_type": "evaluation_summary",
+    "source_name": "matchup_results.json",
+    "content": "Matchup Baseline vs Safe (baseline_vs_safe): Baseline outperformed Safe in the side-balanced evaluation. It won 61% of matches with an average goal difference of +1.08. baseline_s1 outperforms safe_s1 after controlling for side assignment. Total matches: 100. baseline wins: 61 with win rate 0.61. safe wins: 37 with win rate 0.37. Draws: 2. Average goals: baseline 8.78, safe 7.7. Average goal difference: 1.08. Average steps per match: 3636.98. Timeout matches: 10. Tempo: Controlled. Risk level: Low."
+  },
+  {
+    "id": "evaluation::aggressive_vs_safe",
+    "source_type": "evaluation_summary",
+    "source_name": "matchup_results.json",
+    "content": "Matchup Aggressive vs Safe (aggressive_vs_safe): Aggressive outperformed Safe in the side-balanced evaluation. It won 72% of matches with an average goal difference of +2.41. aggressive_s1 strongly outperforms safe_s1 after controlling for side assignment. Total matches: 100. aggressive wins: 72 with win rate 0.72. safe wins: 26 with win rate 0.26. Draws: 2. Average goals: aggressive 9.12, safe 6.71. Average goal difference: 2.41. Average steps per match: 3454.06. Timeout matches: 11. Tempo: Fast. Risk level: High."
+  },
+  {
+    "id": "evaluation::baseline_vs_baseline",
+    "source_type": "evaluation_summary",
+    "source_name": "matchup_results.json",
+    "content": "Matchup Baseline vs Baseline (baseline_vs_baseline): Baseline vs Baseline is the reference matchup. It is useful for understanding the benchmark policy without comparing against a different tactical style. Total matches: 50. baseline wins: 25 with win rate 0.5. baseline wins: 25 with win rate 0.5. Draws: 0. Average goals: baseline 7.78, baseline 7.74. Average goal difference: 0.04. Average steps per match: 3170.4. Timeout matches: 5. Tempo: Neutral. Risk level: Reference."
+  },
+  {
+    "id": "evaluation::policy_ranking",
+    "source_type": "evaluation_ranking",
+    "source_name": "side_balanced_policy_comparison.json",
+    "content": "Side-balanced policy ranking: Rank 1: soccertwos_poca_aggressive_s1 - Best overall policy in side-balanced pairwise evaluation. It beats both baseline_s1 and safe_s1. Rank 2: soccertwos_poca_baseline_s1 - Second strongest policy. It loses to aggressive_s1 but beats safe_s1. Rank 3: soccertwos_poca_safe_s1 - Weakest policy in this evaluation set. It loses to both aggressive_s1 and baseline_s1. Important limitation: These results are based on one trained seed per policy variant. The side-balanced protocol reduces Blue/Purple assignment bias, but future work should include multiple training seeds for stronger statistical confidence."
+  },
+  {
+    "id": "methodology::side_balanced_evaluation",
+    "source_type": "methodology",
+    "source_name": "side_balanced_policy_comparison.json",
+    "content": "Side-balanced evaluation means each policy pair is evaluated in both Blue and Purple assignments to reduce side-assignment bias. Protocol: Side-balanced pairwise policy evaluation. Each policy pair is evaluated in both Blue/Purple assignments to reduce side-assignment bias. Goals to win: 10. Maximum environment steps: 5000. Matches per direction: 50. Total matches per pair: 100."
   }
 ]
