@@ -1,0 +1,21 @@
+{
+  "matchup_id": "safe_s1_vs_aggressive_s1",
+  "blue_policy": "soccertwos_poca_safe_s1",
+  "orange_policy": "soccertwos_poca_aggressive_s1",
+  "matches_played": 50,
+  "blue_wins": 15,
+  "orange_wins": 34,
+  "draws": 1,
+  "blue_win_rate": 0.30,
+  "orange_win_rate": 0.68,
+  "draw_rate": 0.02,
+  "avg_goals_blue": 6.66,
+  "avg_goals_orange": 9.02,
+  "avg_goal_diff_blue_minus_orange": -2.36,
+  "avg_steps_per_match": 3291.4,
+  "timeout_matches": 4,
+  "blue_timeout_wins": 0,
+  "orange_timeout_wins": 2,
+  "timeout_draws": 1,
+  "notes": "Reverse cross-policy evaluation over 50 matches to 10 goals or 5000 steps. Blue used safe_s1 and orange/purple used aggressive_s1. Combined with the aggressive_s1_vs_safe_s1 direction, results strongly favor aggressive_s1 over safe_s1 after controlling for side assignment."
+}
