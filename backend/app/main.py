@@ -9,6 +9,8 @@ from pydantic import BaseModel
 from app.services.match_loader import load_all_matches, load_match_by_id
 from app.services.run_loader import load_all_runs, load_run_by_id
 from app.services.copilot_service import answer_question
+from app.services.policy_loader import load_policies, load_policy
+from app.services.evaluation_loader import load_matchups, load_matchup
 
 BACKEND_ROOT = Path(__file__).resolve().parents[1]
 PROJECT_ROOT = BACKEND_ROOT.parent
@@ -85,3 +87,30 @@ def get_run(run_id: str):
 @app.post("/chat")
 def chat(request: ChatRequest):
     return answer_question(request.match_id, request.question)
+
+
+@app.get("/policies")
+def get_policies():
+    return load_policies()
+
+
+@app.get("/policies/{policy_id}")
+def get_policy(policy_id: str):
+    policy = load_policy(policy_id)
+    if policy is None:
+        raise HTTPException(status_code=404, detail="Policy not found")
+    return policy
+
+
+@app.get("/evaluations/matchups")
+def get_matchups():
+    return load_matchups()
+
+
+@app.get("/evaluations/matchups/{matchup_id}")
+def get_matchup(matchup_id: str):
+    matchup = load_matchup(matchup_id)
+    if matchup is None:
+        raise HTTPException(status_code=404, detail="Matchup not found")
+    return matchup
+

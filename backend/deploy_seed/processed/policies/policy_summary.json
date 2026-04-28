@@ -1,0 +1,59 @@
+[
+  {
+    "policy_id": "baseline",
+    "name": "Baseline",
+    "tagline": "Reference benchmark",
+    "style": "Balanced reference behavior",
+    "accent": "slate",
+    "summary": "The baseline policy is used as the reference agent for comparison. It represents the neutral benchmark behavior before emphasizing safer recovery or more aggressive pressure.",
+    "strengths": [
+      "Clear comparison anchor",
+      "Neutral behavior profile",
+      "Useful for replay explanation"
+    ],
+    "weaknesses": [
+      "Less specialized than trained variants",
+      "Can struggle against pressure-heavy agents",
+      "May not recover as consistently as the safe policy"
+    ],
+    "best_for": "Benchmarking trained SoccerTwos agents"
+  },
+  {
+    "policy_id": "safe",
+    "name": "Safe",
+    "tagline": "Controlled and stable",
+    "style": "Defensive recovery and lower-risk positioning",
+    "accent": "emerald",
+    "summary": "The safe policy prioritizes stable positioning, defensive recovery, and lower-risk decisions. It is designed to reduce tactical collapse and preserve structure during transitions.",
+    "strengths": [
+      "Better recovery behavior",
+      "Lower overcommitment risk",
+      "More stable team shape"
+    ],
+    "weaknesses": [
+      "May attack more slowly",
+      "Can miss fast counterattack chances",
+      "May apply less pressure than the aggressive agent"
+    ],
+    "best_for": "Explaining stability, safety, and conservative RL behavior"
+  },
+  {
+    "policy_id": "aggressive",
+    "name": "Aggressive",
+    "tagline": "High-pressure attack",
+    "style": "Fast pressure and direct attacking",
+    "accent": "violet",
+    "summary": "The aggressive policy applies faster pressure, attacks more directly, and accepts more tactical exposure. It is useful for studying high-reward, higher-risk RL behavior.",
+    "strengths": [
+      "Creates faster attacking chances",
+      "Applies high pressure",
+      "Can exploit passive baseline behavior"
+    ],
+    "weaknesses": [
+      "Can overcommit",
+      "May leave defensive gaps",
+      "Higher tactical volatility"
+    ],
+    "best_for": "Studying risk-reward tradeoffs in learned multi-agent behavior"
+  }
+]

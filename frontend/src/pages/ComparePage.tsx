@@ -1,315 +1,217 @@
-import {
-  ArrowRight,
-  CheckCircle2,
-  Clock,
-  Crosshair,
-  GitCompare,
-  Grid3X3,
-  RotateCcw,
-  Settings,
-  Shield,
-  Swords,
-  Target,
-  Zap,
-} from "lucide-react";
-import { Link } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
 import TopNav from "../components/TopNav";
+import { getMatchups, getPolicies } from "../lib/api";
+import type { MatchupResult, Policy } from "../lib/api";
 
-const policies = [
-  {
-    name: "Safe",
-    icon: Shield,
-    color: "blue",
-    desc: "Stays organized and limits risk.",
-    chip: "More stable",
-  },
-  {
-    name: "Aggressive",
-    icon: Zap,
-    color: "purple",
-    desc: "Pressures hard and attacks fast.",
-    chip: "Creates chances",
-  },
-  {
-    name: "Baseline",
-    icon: Crosshair,
-    color: "teal",
-    desc: "Reference policy for comparison.",
-    chip: "Comparison anchor",
-  },
-];
+const accentClass: Record<string, string> = {
+  emerald: "from-emerald-500 to-teal-500 border-emerald-200",
+  violet: "from-violet-500 to-fuchsia-500 border-violet-200",
+  slate: "from-slate-500 to-blue-500 border-slate-200",
+};
 
-function policyIcon(policy: string) {
-  if (policy === "Safe") return Shield;
-  if (policy === "Aggressive") return Zap;
-  return Crosshair;
-}
-
-function policyColor(policy: string) {
-  if (policy === "Safe") return "text-blue-300 bg-blue-500/10 border-blue-400/20";
-  if (policy === "Aggressive") return "text-purple-300 bg-purple-500/10 border-purple-400/20";
-  return "text-teal-300 bg-teal-500/10 border-teal-400/20";
-}
-
-function MatrixHeader({ policy }: { policy: string }) {
-  const Icon = policyIcon(policy);
-
-  return (
-    <div className="flex items-center justify-center gap-2 text-sm font-bold text-slate-300">
-      <span className={`flex h-8 w-8 items-center justify-center rounded-2xl border ${policyColor(policy)}`}>
-        <Icon className="h-4 w-4" />
-      </span>
-      {policy}
-    </div>
-  );
-}
-
-function MatrixRowLabel({ policy }: { policy: string }) {
-  const Icon = policyIcon(policy);
-
-  return (
-    <div className="flex flex-col items-center justify-center gap-2 text-sm font-bold text-slate-300">
-      <span className={`flex h-9 w-9 items-center justify-center rounded-2xl border ${policyColor(policy)}`}>
-        <Icon className="h-4 w-4" />
-      </span>
-      {policy}
-    </div>
-  );
+function pct(wins: number, total: number) {
+  if (!total) return "Pending";
+  return `${Math.round((wins / total) * 100)}%`;
 }
 
 export default function ComparePage() {
-  return (
-    <div className="min-h-screen overflow-hidden bg-slate-950 text-slate-100">
-      <div className="pointer-events-none fixed inset-0">
-        <div className="absolute left-[-15rem] top-[-14rem] h-[34rem] w-[34rem] rounded-full bg-blue-600/20 blur-3xl" />
-        <div className="absolute right-[-16rem] top-16 h-[36rem] w-[36rem] rounded-full bg-purple-600/20 blur-3xl" />
-        <div className="absolute bottom-[-20rem] left-1/3 h-[32rem] w-[32rem] rounded-full bg-cyan-500/10 blur-3xl" />
-      </div>
+  const [policies, setPolicies] = useState<Policy[]>([]);
+  const [matchups, setMatchups] = useState<MatchupResult[]>([]);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    Promise.all([getPolicies(), getMatchups()])
+      .then(([policyData, matchupData]) => {
+        setPolicies(policyData);
+        setMatchups(matchupData);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
+  const policyById = useMemo(() => {
+    return Object.fromEntries(policies.map((p) => [p.policy_id, p]));
+  }, [policies]);
+
+  return (
+    <div className="min-h-screen bg-[#f8faf7] text-slate-950">
       <TopNav />
 
-      <main className="relative mx-auto max-w-[1500px] px-6 py-8">
-        <section className="mb-6 flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
-          <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-3xl border border-purple-400/30 bg-purple-500/10 shadow-lg shadow-purple-500/10">
-              <GitCompare className="h-8 w-8 text-purple-200" />
-            </div>
-
+      <main className="mx-auto max-w-7xl px-6 py-10">
+        <section className="overflow-hidden rounded-[2rem] border border-emerald-100 bg-white shadow-sm">
+          <div className="grid gap-8 p-8 lg:grid-cols-[1.2fr_0.8fr] lg:p-12">
             <div>
-              <h1 className="text-3xl font-black tracking-tight text-white md:text-4xl">
-                Policy Arena
+              <div className="mb-4 inline-flex rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700">
+                SoccerTwos Policy Arena
+              </div>
+              <h1 className="max-w-3xl text-4xl font-black tracking-tight text-slate-950 md:text-6xl">
+                Compare RL soccer agents like a tactical product dashboard.
               </h1>
-              <p className="mt-1 text-sm text-slate-400">
-                Compare Safe, Aggressive, and Baseline agents across repeated matchups.
+              <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">
+                Review safe, aggressive, and baseline SoccerTwos policies through policy cards,
+                matchup summaries, evaluation metrics, and grounded copilot prompts.
               </p>
             </div>
-          </div>
 
-          <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
-            {[
-              ["3", "Policies", Swords, "blue"],
-              ["9", "Matchups", Grid3X3, "purple"],
-              ["50", "Games each", CheckCircle2, "teal"],
-              ["5,000", "Max steps", Clock, "orange"],
-              ["First to 10", "Goals wins", Target, "yellow"],
-            ].map(([value, label, Icon, tone]) => {
-              const toneClass =
-                tone === "blue"
-                  ? "text-blue-300 bg-blue-500/10"
-                  : tone === "purple"
-                    ? "text-purple-300 bg-purple-500/10"
-                    : tone === "teal"
-                      ? "text-teal-300 bg-teal-500/10"
-                      : tone === "orange"
-                        ? "text-orange-300 bg-orange-500/10"
-                        : "text-yellow-300 bg-yellow-500/10";
-
-              return (
-                <div
-                  key={label as string}
-                  className="min-w-[150px] rounded-3xl border border-white/10 bg-white/[0.04] p-4 shadow-lg shadow-slate-950/20"
-                >
-                  <div className="flex items-center gap-3">
-                    <div className={`flex h-10 w-10 items-center justify-center rounded-2xl ${toneClass}`}>
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <div className="text-lg font-black text-white">{value as string}</div>
-                      <div className="text-xs text-slate-400">{label as string}</div>
-                    </div>
+            <div className="rounded-[2rem] bg-gradient-to-br from-emerald-700 via-emerald-600 to-blue-600 p-6 text-white shadow-xl">
+              <div className="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-100">
+                Arena Snapshot
+              </div>
+              <div className="mt-8 grid grid-cols-2 gap-4">
+                <div className="rounded-2xl bg-white/15 p-4 backdrop-blur">
+                  <div className="text-3xl font-black">{policies.length || 3}</div>
+                  <div className="text-sm text-emerald-50">Policy styles</div>
+                </div>
+                <div className="rounded-2xl bg-white/15 p-4 backdrop-blur">
+                  <div className="text-3xl font-black">{matchups.length || 4}</div>
+                  <div className="text-sm text-emerald-50">Matchups</div>
+                </div>
+                <div className="col-span-2 rounded-2xl bg-white/15 p-4 backdrop-blur">
+                  <div className="text-sm text-emerald-50">Main question</div>
+                  <div className="mt-1 text-xl font-bold">
+                    Which policy wins, and what behavior explains it?
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            </div>
           </div>
         </section>
 
-        <section className="grid gap-5 xl:grid-cols-[390px_1fr_320px]">
-          <aside className="space-y-4">
-            <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-xl shadow-slate-950/20">
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <Settings className="h-5 w-5 text-blue-300" />
-                  <h2 className="text-base font-black text-white">Evaluation Setup</h2>
+        {loading ? (
+          <div className="mt-10 rounded-3xl border bg-white p-8 text-slate-600 shadow-sm">
+            Loading arena data...
+          </div>
+        ) : (
+          <>
+            <section className="mt-10">
+              <div className="mb-5 flex items-end justify-between gap-4">
+                <div>
+                  <h2 className="text-2xl font-black text-slate-950">Policy identities</h2>
+                  <p className="mt-1 text-slate-600">
+                    Each agent has a different tactical personality and risk profile.
+                  </p>
                 </div>
-
-                <Link
-                  to="/replay"
-                  className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-300 hover:bg-white/10"
-                >
-                  View replay
-                  <ArrowRight className="h-3.5 w-3.5" />
-                </Link>
               </div>
 
-              <div className="space-y-3">
-                {[
-                  ["Environment", "SoccerTwos (poca_v1)"],
-                  ["Episode length", "5,000 steps"],
-                  ["Goal condition", "First to 10 goals wins"],
-                  ["Games per matchup", "50"],
-                  ["Policies", "3"],
-                ].map(([label, value]) => (
-                  <div
-                    key={label}
-                    className="flex items-center justify-between border-b border-white/10 pb-3 last:border-b-0 last:pb-0"
+              <div className="grid gap-5 md:grid-cols-3">
+                {policies.map((policy) => (
+                  <article
+                    key={policy.policy_id}
+                    className={`rounded-[1.75rem] border bg-white p-6 shadow-sm ${
+                      accentClass[policy.accent]?.split(" ").at(-1) ?? "border-slate-200"
+                    }`}
                   >
-                    <span className="text-sm font-semibold text-slate-300">{label}</span>
-                    <span className="text-sm text-slate-400">{value}</span>
-                  </div>
+                    <div
+                      className={`mb-5 h-2 rounded-full bg-gradient-to-r ${
+                        accentClass[policy.accent] ?? accentClass.slate
+                      }`}
+                    />
+                    <div className="text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
+                      {policy.tagline}
+                    </div>
+                    <h3 className="mt-2 text-2xl font-black">{policy.name}</h3>
+                    <p className="mt-2 text-sm font-semibold text-emerald-700">{policy.style}</p>
+                    <p className="mt-4 leading-7 text-slate-600">{policy.summary}</p>
+
+                    <div className="mt-5">
+                      <div className="text-sm font-black text-slate-900">Strengths</div>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {policy.strengths.map((item) => (
+                          <span
+                            key={item}
+                            className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
                 ))}
               </div>
-            </div>
+            </section>
 
-            <div className="space-y-3">
-              {policies.map((policy) => {
-                const Icon = policy.icon;
-                const colorClass =
-                  policy.color === "blue"
-                    ? "border-blue-400/40 bg-blue-500/10"
-                    : policy.color === "purple"
-                      ? "border-purple-400/40 bg-purple-500/10"
-                      : "border-teal-400/40 bg-teal-500/10";
-
-                const iconClass =
-                  policy.color === "blue"
-                    ? "bg-blue-500/10 text-blue-300"
-                    : policy.color === "purple"
-                      ? "bg-purple-500/10 text-purple-300"
-                      : "bg-teal-500/10 text-teal-300";
-
-                return (
-                  <div
-                    key={policy.name}
-                    className={`rounded-3xl border p-4 shadow-lg shadow-slate-950/20 ${colorClass}`}
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className={`flex h-14 w-14 items-center justify-center rounded-full border border-white/10 ${iconClass}`}>
-                        <Icon className="h-7 w-7" />
-                      </div>
-
-                      <div className="min-w-0 flex-1">
-                        <h3 className="text-base font-black text-white">{policy.name}</h3>
-                        <p className="mt-1 text-xs leading-5 text-slate-400">{policy.desc}</p>
-
-                        <div className="mt-2 flex gap-2">
-                          <span className="rounded-full bg-white/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-emerald-300">
-                            Strength
-                          </span>
-                          <span className="rounded-full border border-white/10 bg-slate-950/40 px-2.5 py-1 text-[11px] text-slate-300">
-                            {policy.chip}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </aside>
-
-          <section className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-xl shadow-slate-950/20">
-            <div className="mb-5 grid grid-cols-[80px_1fr_1fr_1fr] items-center gap-3">
-              <div />
-              <MatrixHeader policy="Safe" />
-              <MatrixHeader policy="Aggressive" />
-              <MatrixHeader policy="Baseline" />
-            </div>
-
-            <div className="mb-4 flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/45 px-4 py-3">
-              <div className="text-sm font-black text-blue-300">Blue side = row</div>
-              <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-black text-slate-300">
-                VS
+            <section className="mt-12">
+              <div className="mb-5">
+                <h2 className="text-2xl font-black text-slate-950">Matchup board</h2>
+                <p className="mt-1 text-slate-600">
+                  These cards will automatically become quantitative once your logged evaluations are processed.
+                </p>
               </div>
-              <div className="text-sm font-black text-purple-300">Purple side = column</div>
-            </div>
 
-            <div className="grid grid-cols-[80px_1fr_1fr_1fr] gap-3">
-              {["Safe", "Aggressive", "Baseline"].map((rowPolicy) => (
-                <div key={rowPolicy} className="contents">
-                  <MatrixRowLabel policy={rowPolicy} />
+              <div className="grid gap-5 lg:grid-cols-2">
+                {matchups.map((m) => {
+                  const blue = policyById[m.blue_policy];
+                  const orange = policyById[m.orange_policy];
 
-                  {["Safe", "Aggressive", "Baseline"].map((colPolicy) => (
-                    <div
-                      key={`${rowPolicy}-${colPolicy}`}
-                      className="rounded-2xl border border-white/10 bg-slate-900/70 p-4 transition hover:border-purple-400/40 hover:bg-purple-500/10"
+                  return (
+                    <article
+                      key={m.matchup_id}
+                      className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
                     >
-                      <div className="text-center text-sm font-bold text-white">
-                        {rowPolicy} vs {colPolicy}
-                      </div>
-
-                      <div className="my-3 border-t border-white/10" />
-
-                      <div className="grid grid-cols-3 gap-2 text-center">
+                      <div className="flex items-start justify-between gap-4">
                         <div>
-                          <div className="mx-auto mb-1 h-2.5 w-2.5 rounded-full bg-blue-400" />
-                          <div className="text-xs text-slate-500">-</div>
+                          <div className="text-sm font-bold uppercase tracking-[0.2em] text-slate-400">
+                            {m.tempo} tempo · {m.risk_level} risk
+                          </div>
+                          <h3 className="mt-2 text-2xl font-black">{m.title}</h3>
                         </div>
-                        <div>
-                          <div className="mx-auto mb-1 h-2.5 w-2.5 rounded-full bg-slate-400" />
-                          <div className="text-xs text-slate-500">-</div>
-                        </div>
-                        <div>
-                          <div className="mx-auto mb-1 h-2.5 w-2.5 rounded-full bg-purple-400" />
-                          <div className="text-xs text-slate-500">-</div>
+                        <div className="rounded-full bg-emerald-50 px-4 py-2 text-sm font-black text-emerald-700">
+                          {m.num_matches ? `${m.num_matches} matches` : "Data pending"}
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              ))}
-            </div>
 
-            <div className="mt-5 flex flex-wrap justify-center gap-5 text-xs text-slate-400">
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-blue-400" />
-                Blue wins
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-slate-400" />
-                Draw
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="h-2.5 w-2.5 rounded-full bg-purple-400" />
-                Purple wins
-              </div>
-            </div>
-          </section>
+                      <div className="mt-6 grid grid-cols-2 gap-4">
+                        <div className="rounded-2xl bg-blue-50 p-4">
+                          <div className="text-xs font-bold uppercase tracking-[0.2em] text-blue-500">
+                            Blue
+                          </div>
+                          <div className="mt-1 text-xl font-black">{blue?.name ?? m.blue_policy}</div>
+                          <div className="mt-1 text-sm text-slate-600">
+                            Win rate: {pct(m.blue_wins, m.num_matches)}
+                          </div>
+                        </div>
 
-          <aside className="rounded-3xl border border-white/10 bg-gradient-to-b from-purple-500/10 to-blue-500/5 p-6 shadow-xl shadow-slate-950/20">
-            <div className="flex h-full flex-col items-center justify-center text-center">
-              <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full border border-purple-400/30 bg-purple-500/10 shadow-lg shadow-purple-500/10">
-                <RotateCcw className="h-11 w-11 text-purple-200" />
+                        <div className="rounded-2xl bg-orange-50 p-4">
+                          <div className="text-xs font-bold uppercase tracking-[0.2em] text-orange-500">
+                            Orange
+                          </div>
+                          <div className="mt-1 text-xl font-black">{orange?.name ?? m.orange_policy}</div>
+                          <div className="mt-1 text-sm text-slate-600">
+                            Win rate: {pct(m.orange_wins, m.num_matches)}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-5 grid grid-cols-3 gap-3">
+                        <div className="rounded-2xl border border-slate-100 p-4">
+                          <div className="text-xs font-bold text-slate-400">Avg Blue</div>
+                          <div className="text-2xl font-black">{m.avg_blue_score}</div>
+                        </div>
+                        <div className="rounded-2xl border border-slate-100 p-4">
+                          <div className="text-xs font-bold text-slate-400">Avg Orange</div>
+                          <div className="text-2xl font-black">{m.avg_orange_score}</div>
+                        </div>
+                        <div className="rounded-2xl border border-slate-100 p-4">
+                          <div className="text-xs font-bold text-slate-400">Goal Diff</div>
+                          <div className="text-2xl font-black">{m.goal_difference}</div>
+                        </div>
+                      </div>
+
+                      <p className="mt-5 leading-7 text-slate-600">{m.summary}</p>
+
+                      <div className="mt-5 rounded-2xl bg-slate-950 p-4 text-white">
+                        <div className="text-xs font-bold uppercase tracking-[0.2em] text-emerald-300">
+                          Copilot prompt
+                        </div>
+                        <div className="mt-2 text-sm leading-6">{m.copilot_prompt}</div>
+                      </div>
+                    </article>
+                  );
+                })}
               </div>
-
-              <h2 className="text-xl font-black text-white">Matchups are asymmetric</h2>
-
-              <p className="mt-3 max-w-[230px] text-sm leading-6 text-slate-400">
-                Safe vs Aggressive is not the same as Aggressive vs Safe. Each cell runs a separate evaluation.
-              </p>
-            </div>
-          </aside>
-        </section>
+            </section>
+          </>
+        )}
       </main>
     </div>
   );

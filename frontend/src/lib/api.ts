@@ -132,3 +132,45 @@ export async function askCopilot(
   const data = (await res.json()) as CopilotResponse;
   return normalizeDisplayText(data);
 }
+
+export type Policy = {
+  policy_id: string;
+  name: string;
+  tagline: string;
+  style: string;
+  accent: string;
+  summary: string;
+  strengths: string[];
+  weaknesses: string[];
+  best_for: string;
+};
+
+export type MatchupResult = {
+  matchup_id: string;
+  title: string;
+  blue_policy: string;
+  orange_policy: string;
+  num_matches: number;
+  blue_wins: number;
+  orange_wins: number;
+  draws: number;
+  avg_blue_score: number;
+  avg_orange_score: number;
+  goal_difference: number;
+  risk_level: string;
+  tempo: string;
+  summary: string;
+  copilot_prompt: string;
+};
+
+export async function getPolicies(): Promise<Policy[]> {
+  const res = await fetch(`${API_BASE_URL}/policies`);
+  if (!res.ok) throw new Error("Failed to fetch policies");
+  return res.json();
+}
+
+export async function getMatchups(): Promise<MatchupResult[]> {
+  const res = await fetch(`${API_BASE_URL}/evaluations/matchups`);
+  if (!res.ok) throw new Error("Failed to fetch matchup results");
+  return res.json();
+}
