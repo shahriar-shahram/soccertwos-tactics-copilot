@@ -1,0 +1,80 @@
+{
+  "evaluation_protocol": {
+    "description": "Side-balanced pairwise policy evaluation. Each policy pair is evaluated in both Blue/Purple assignments to reduce side-assignment bias.",
+    "goals_to_win": 10,
+    "max_environment_steps": 5000,
+    "matches_per_direction": 50,
+    "total_matches_per_pair": 100
+  },
+  "side_balanced_results": [
+    {
+      "policy_a": "soccertwos_poca_aggressive_s1",
+      "policy_b": "soccertwos_poca_baseline_s1",
+      "total_matches": 100,
+      "policy_a_wins": 62,
+      "policy_b_wins": 35,
+      "draws": 3,
+      "policy_a_win_rate": 0.62,
+      "policy_b_win_rate": 0.35,
+      "draw_rate": 0.03,
+      "avg_goals_policy_a": 8.76,
+      "avg_goals_policy_b": 7.63,
+      "avg_goal_diff_policy_a_minus_b": 1.13,
+      "avg_steps_per_match": 3366.42,
+      "timeout_matches": 5,
+      "conclusion": "aggressive_s1 outperforms baseline_s1 after controlling for side assignment."
+    },
+    {
+      "policy_a": "soccertwos_poca_baseline_s1",
+      "policy_b": "soccertwos_poca_safe_s1",
+      "total_matches": 100,
+      "policy_a_wins": 61,
+      "policy_b_wins": 37,
+      "draws": 2,
+      "policy_a_win_rate": 0.61,
+      "policy_b_win_rate": 0.37,
+      "draw_rate": 0.02,
+      "avg_goals_policy_a": 8.78,
+      "avg_goals_policy_b": 7.70,
+      "avg_goal_diff_policy_a_minus_b": 1.08,
+      "avg_steps_per_match": 3636.98,
+      "timeout_matches": 10,
+      "conclusion": "baseline_s1 outperforms safe_s1 after controlling for side assignment."
+    },
+    {
+      "policy_a": "soccertwos_poca_aggressive_s1",
+      "policy_b": "soccertwos_poca_safe_s1",
+      "total_matches": 100,
+      "policy_a_wins": 72,
+      "policy_b_wins": 26,
+      "draws": 2,
+      "policy_a_win_rate": 0.72,
+      "policy_b_win_rate": 0.26,
+      "draw_rate": 0.02,
+      "avg_goals_policy_a": 9.12,
+      "avg_goals_policy_b": 6.71,
+      "avg_goal_diff_policy_a_minus_b": 2.41,
+      "avg_steps_per_match": 3454.06,
+      "timeout_matches": 11,
+      "conclusion": "aggressive_s1 strongly outperforms safe_s1 after controlling for side assignment."
+    }
+  ],
+  "ranking": [
+    {
+      "rank": 1,
+      "policy_id": "soccertwos_poca_aggressive_s1",
+      "summary": "Best overall policy in side-balanced pairwise evaluation. It beats both baseline_s1 and safe_s1."
+    },
+    {
+      "rank": 2,
+      "policy_id": "soccertwos_poca_baseline_s1",
+      "summary": "Second strongest policy. It loses to aggressive_s1 but beats safe_s1."
+    },
+    {
+      "rank": 3,
+      "policy_id": "soccertwos_poca_safe_s1",
+      "summary": "Weakest policy in this evaluation set. It loses to both aggressive_s1 and baseline_s1."
+    }
+  ],
+  "important_note": "These results are based on one trained seed per policy variant. The side-balanced protocol reduces Blue/Purple assignment bias, but future work should include multiple training seeds for stronger statistical confidence."
+}
